@@ -1,5 +1,4 @@
 pipeline {
-
     agent any
 
     stages {
@@ -14,17 +13,18 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building project'
-                bat 'mvn clean compile'
+                dir('siddhi-28') {
+                    bat 'mvn clean compile'
+                }
             }
         }
 
         stage('Run Selenium Tests') {
             steps {
-                echo 'Running Selenium tests'
-                bat 'mvn test'
+                dir('siddhi-28') {
+                    bat 'mvn test'
+                }
             }
         }
-
     }
-
 }
